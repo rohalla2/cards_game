@@ -10,8 +10,11 @@
 	<div class="container">
 		<h1>Jeff's Cards Against Humanity</h1>
     <% if @player %>
-      <h4>Welcome, <%= @player.name %></h4>
       <%= link_to "logout", logout_path, class: "btn btn-danger pull-right", method: :delete %>
+    <% end %>
+    <% if @player %>
+      <h4>Welcome, <%= @player.name %></h4>
+      
 		<% end %>
     <% if notice.present? %>
       <div class="alert alert-dismissable alert-warning">

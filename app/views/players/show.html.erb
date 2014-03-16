@@ -11,5 +11,12 @@
 	<% end %> 
 </ul>
 
+<h3>Games You are a member of</h3>
+<ul>
+	<% @player.games.each do |game| %>
+		<li><%= link_to game.name, game_path(game) %></li>
+	<% end %> 
+</ul>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
