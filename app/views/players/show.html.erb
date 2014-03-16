@@ -4,6 +4,12 @@
   <strong>Name:</strong>
   <%= @player.name %>
 </p>
+<h3>Games You Own</h3>
+<ul>
+	<% @games_created.each do |game| %>
+		<li><%= game.name %></li>
+	<% end %> 
+</ul>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
