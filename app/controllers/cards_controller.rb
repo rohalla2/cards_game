@@ -4,8 +4,7 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-      @cards = Card.all.paginate(page: params[:page], per_page: 25) 
-  
+      @cards = Card.all.paginate(page: params[:page], per_page: 100) 
   end
 
   # GET /cards/1
@@ -20,6 +19,7 @@ class CardsController < ApplicationController
 
   # GET /cards/1/edit
   def edit
+    redirect_to root_path, notice: "You cannot edit this card."
   end
 
   # POST /cards
