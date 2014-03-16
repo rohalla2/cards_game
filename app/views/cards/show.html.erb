@@ -1,0 +1,21 @@
+
+<% if @card.cardType == "A" %>
+	<div class="card white"> <!-- make it a white card -->
+<% else %>
+	<div class="card black"> <!-- make it a black card -->
+<% end %>
+
+
+
+ <h2><%= @card.text %></h2>
+
+<% if @card.cardType == "Q" %>
+<p>
+  <strong>Num answers:</strong>
+  <%= @card.numAnswers %>
+</p>
+<% end %>
+
+</div>
+
+<%= link_to 'Back', cards_path %>
