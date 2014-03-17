@@ -20,6 +20,15 @@
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
+  
+  <div class="field">
+    <%= f.label :closed %><br>
+    <%= f.check_box :closed %>
+  </div>
+  <p><b>Note:</b> once the game is closed to new participants, it cannot be reopened.</p>
+
+  
+
   <div class="actions">
     <%= f.submit %>
   </div>
