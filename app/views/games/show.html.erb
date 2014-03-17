@@ -15,8 +15,16 @@
 </ul>
 
 	<% if @game.closed %>
-		<%= link_to "Start Game not functional", game_path(@game), class: "btn btn-success" %>
+		<%= link_to "Start Game", start_game_path(@game), class: "btn btn-success" %>
 	<% end %>
 	<br>
+
+	<% @player.cards.each do |card| %>
+		<div class="card white pull-left">
+			<h2><%= card.text %></h2>
+		</div>
+	<% end %>
+
+	
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

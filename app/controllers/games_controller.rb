@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :start]
 
   # GET /games
   # GET /games.json
@@ -77,6 +77,28 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def start
+    #loop through each player and assign them 10 random A cards
+    @game.players.each do |player|
+      10.times do
+        card = Card.where("cardType = 'A'").all(order: "RANDOM()", limit: 1)
+        assign = CardsPlayer.new
+        assign.game_id = @game.id
+        assign.player_id = player.id
+        assign.card_id = card[0].id
+        assign.save
+        refcard = AvailableCard.where("game_id = ? and card_id = ?", @game.id, card[0].id).first
+        refcard.destroy
+      end
+    end
+
+    redirect_to game_path(@game) 
+  end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

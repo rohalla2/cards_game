@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317021437) do
+ActiveRecord::Schema.define(version: 20140317035738) do
 
   create_table "available_cards", force: true do |t|
     t.integer  "card_id"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20140317021437) do
     t.integer  "game"
   end
 
+  create_table "cards_players", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards_players", ["card_id"], name: "index_cards_players_on_card_id"
+  add_index "cards_players", ["player_id"], name: "index_cards_players_on_player_id"
+
   create_table "games", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,6 +51,8 @@ ActiveRecord::Schema.define(version: 20140317021437) do
     t.string   "code"
     t.integer  "creator_id"
     t.boolean  "closed"
+    t.string   "game_status"
+    t.string   "player_choosing"
   end
 
   create_table "games_players", force: true do |t|

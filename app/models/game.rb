@@ -22,7 +22,7 @@ class Game < ActiveRecord::Base
 			    cards = Card.all
     			cards.each do |card|
       				if card.game.nil? || card.game == id
-      					c = AvailableCards.new
+      					c = AvailableCard.new
       					c.card_id = card.id
       					c.game_id = id
       					c.save    			
