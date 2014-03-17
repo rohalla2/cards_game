@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
    protected
   	def find_player
   		if session[:player_id] != nil
-  			@player = Player.find_by(id: session[:player_id])
+  			@auth_player = Player.find_by(id: session[:player_id])
   		else
-  			@player = nil
+  			@auth_player = nil
   		end
   	end
 end

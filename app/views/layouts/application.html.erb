@@ -9,11 +9,11 @@
 <body>
 	<div class="container">
 		<h1>Jeff's Cards Against Humanity</h1>
-    <% if @player %>
+    <% if @auth_player %>
       <%= link_to "logout", logout_path, class: "btn btn-danger pull-right", method: :delete %>
     <% end %>
-    <% if @player %>
-      <h4>Welcome, <%= @player.name %></h4>
+    <% if @auth_player %>
+      <h4>Welcome, <%= @auth_player.name %></h4>
       
 		<% end %>
     <% if notice.present? %>

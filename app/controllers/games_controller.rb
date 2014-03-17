@@ -23,7 +23,7 @@ class GamesController < ApplicationController
     game = Game.find_by(name: name)
     if !game.nil? and game.code = code
       g = GamesPlayers.new
-      g.player_id = @player.id
+      g.player_id = @auth_player.id
       g.game_id = game.id
       g.save
       redirect_to game_path(game), notice: "Welcome to the Game!"
@@ -40,11 +40,11 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-    @game.creator_id = @player.id
+    @game.creator_id = @auth_player.id
     respond_to do |format|
       if @game.save
         g = GamesPlayers.new
-        g.player_id = @player.id
+        g.player_id = @auth_player.id
         g.game_id = @game.id
         g.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
