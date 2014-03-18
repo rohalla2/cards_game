@@ -19,11 +19,13 @@
 	<% end %>
 	<br>
 	
+	<% if @game.game_status == "started" %>
 		<% @cards.each do |card| %>
 			<div class="card white pull-left">
 				<h2><%= card.text.html_safe %></h2>
 			</div>
 		<% end %>
+	<% end %>
 	
 	<br>
 <%= link_to 'Edit', edit_game_path(@game) %> |
