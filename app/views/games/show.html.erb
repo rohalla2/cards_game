@@ -14,21 +14,17 @@
 	<% end %>
 </ul>
 
-	<% if @game.closed %>
-		<%= link_to "Start Game", start_game_path(@game), class: "btn btn-success" %>
+	<% if @game.closed && @game.game_status == "not_started" %>
+		<%= link_to "Start Game", start_game_path(@game), class: "btn btn-success", method: :post %>
 	<% end %>
 	<br>
 	
 		<% @cards.each do |card| %>
 			<div class="card white pull-left">
-				<h2><%= card.text %></h2>
+				<h2><%= card.text.html_safe %></h2>
 			</div>
 		<% end %>
-
-		<% @game.players.each do |player| %>
-			<%= player.id %> <%= player.email %>
-		<% end %>
 	
-	
+	<br>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

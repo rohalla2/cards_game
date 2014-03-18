@@ -42,6 +42,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.creator_id = @auth_player.id
+    @game.game_status = "not_started"
     respond_to do |format|
       if @game.save
         g = GamesPlayers.new
@@ -72,20 +73,20 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    cards = CardsPlayer.where("game_id = ?", @game.id)
+    cards.destroy_all
     @game.destroy
+
     respond_to do |format|
       format.html { redirect_to games_url }
-      format.json { head :no_content }
     end
   end
 
   def start
-    #loop through each player and assign them 10 random A cards
-    all_answers = Card.where("cardType = 'A'").all(order: "RANDOM()") #returns array
-    i = 0
+    
     @game.players.each do |player| 
-      10.times do
-        card = all_answers[i]
+      cards = @game.cards.limit(10).where("cardType = 'A'").order("RANDOM()")
+      cards.each do |card|
         assign = CardsPlayer.new  
         assign.game_id = @game.id
         assign.player_id = player.id
@@ -93,12 +94,10 @@ class GamesController < ApplicationController
         assign.save
         refcard = AvailableCard.where("game_id = ? and card_id = ?", @game.id, card.id).first
         refcard.destroy
-        assign = nil
-        card = nil
-        refcard = nil
-        i = i + 1
       end
     end
+    
+    @game.update(game_status: "started")
 
     redirect_to game_path(@game) 
   end
