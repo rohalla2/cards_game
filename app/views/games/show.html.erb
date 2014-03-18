@@ -18,13 +18,17 @@
 		<%= link_to "Start Game", start_game_path(@game), class: "btn btn-success" %>
 	<% end %>
 	<br>
+	
+		<% @cards.each do |card| %>
+			<div class="card white pull-left">
+				<h2><%= card.text %></h2>
+			</div>
+		<% end %>
 
-	<% @player.cards.each do |card| %>
-		<div class="card white pull-left">
-			<h2><%= card.text %></h2>
-		</div>
-	<% end %>
-
+		<% @game.players.each do |player| %>
+			<%= player.id %> <%= player.email %>
+		<% end %>
+	
 	
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

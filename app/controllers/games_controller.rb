@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @cards = @auth_player.cards.where('game_id = "?"', @game.id)
   end
 
   # GET /games/new
@@ -80,16 +81,22 @@ class GamesController < ApplicationController
 
   def start
     #loop through each player and assign them 10 random A cards
-    @game.players.each do |player|
+    all_answers = Card.where("cardType = 'A'").all(order: "RANDOM()") #returns array
+    i = 0
+    @game.players.each do |player| 
       10.times do
-        card = Card.where("cardType = 'A'").all(order: "RANDOM()", limit: 1)
-        assign = CardsPlayer.new
+        card = all_answers[i]
+        assign = CardsPlayer.new  
         assign.game_id = @game.id
         assign.player_id = player.id
-        assign.card_id = card[0].id
+        assign.card_id = card.id
         assign.save
-        refcard = AvailableCard.where("game_id = ? and card_id = ?", @game.id, card[0].id).first
+        refcard = AvailableCard.where("game_id = ? and card_id = ?", @game.id, card.id).first
         refcard.destroy
+        assign = nil
+        card = nil
+        refcard = nil
+        i = i + 1
       end
     end
 

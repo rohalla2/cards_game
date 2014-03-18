@@ -9259,5 +9259,10 @@ expansion: "Image1"
 ]
 
 Card.destroy_all
+AvailableCard.destroy_all
+CardsPlayer.destroy_all
+Game.destroy_all
+GamesPlayers.destroy_all
+Player.destroy_all
 
 Card.create(cards)
