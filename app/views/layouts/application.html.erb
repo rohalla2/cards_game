@@ -6,11 +6,46 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+<div class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">Jeff's Cards Against Humanity</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Games", games_path%></li>
+      <li><%= link_to "Players", players_path %></li>
+    </ul>
+
+    <% if @auth_player.nil? %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Sign Up", new_player_path %></li>
+      </ul>
+      <div class="navbar-form navbar-right">
+        <%= render 'sessions/form' %>
+      </div>
+    
+    <% else %>
+      <div class="navbar-form navbar-right">
+        <%= link_to "Logout", logout_path, class: "btn btn-danger pull-right", method: :delete %>
+        <%= link_to "Your Profile", player_path(@auth_player), class: "btn btn-success pull-right" %>
+    
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
 	<div class="container">
-		<h1>Jeff's Cards Against Humanity</h1>
+		
     <% if @auth_player %>
-      <%= link_to "logout", logout_path, class: "btn btn-danger pull-right", method: :delete %>
+      
     <% end %>
     <% if @auth_player %>
       <h4>Welcome, <%= @auth_player.name %></h4>
