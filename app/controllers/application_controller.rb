@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
   			@auth_player = nil
   		end
   	end
+
+    def authorize
+      unless Player.find_by(id: session[:player_id])
+        redirect_to login_url, notice: "Please log in!"
+      end
+    end
 end
