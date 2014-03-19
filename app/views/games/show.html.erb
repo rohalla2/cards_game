@@ -8,11 +8,15 @@
   <%= @game.code %>
 </p>
 
+
 <ul>
 	<% @game.players.each do |player| %>
 		<li><%= player.name %> (<%= player.email %>)</li>
 	<% end %>
 </ul>
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
+
 
 	<% if @game.closed && @game.game_status == "not_started" %>
 		<%= link_to "Start Game", start_game_path(@game), class: "btn btn-success", method: :post %>
@@ -22,11 +26,10 @@
 	<% if @game.game_status == "started" %>
 		<% @cards.each do |card| %>
 			<div class="card white pull-left">
-				<h2><%= card.text.html_safe %></h2>
+				<h3><%= card.text.html_safe %></h3>
 			</div>
 		<% end %>
 	<% end %>
 	
 	<br>
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+

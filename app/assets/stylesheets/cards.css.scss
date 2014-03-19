@@ -9,6 +9,20 @@
 	border-width: 5px;
 	padding: 0px 10px;
 	margin: 5px;
+	-moz-border-radius-bottomright: 25px;
+	border-bottom-right-radius: 25px;
+	
+	-moz-border-radius-bottomleft: 25px;
+	border-bottom-left-radius: 25px;
+	
+	-moz-border-radius-topleft: 25px;
+	border-top-left-radius: 25px;
+	
+	-moz-border-radius-topright: 25px;
+	border-top-right-radius: 25px;
+}
+.card:hover{
+	background-color: #F0EE71;
 }
 
 .white{

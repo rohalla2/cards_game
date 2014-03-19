@@ -83,6 +83,10 @@ class GamesController < ApplicationController
   end
 
   def start
+    if @game.game_status == "started"
+      redirect_to game_path(@game)
+    end
+
     
     @game.players.each do |player| 
       cards = @game.cards.limit(10).where("cardType = 'A'").order("RANDOM()")
