@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+ .black-card-container{
+ 	height: 395px;
+ 	width: 280px;
+ }
