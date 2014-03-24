@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317035738) do
+ActiveRecord::Schema.define(version: 20140324232748) do
 
   create_table "available_cards", force: true do |t|
     t.integer  "card_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140317035738) do
   add_index "available_cards", ["game_id"], name: "index_available_cards_on_game_id"
 
   create_table "cards", force: true do |t|
-    t.string   "cardType"
+    t.string   "cardtype"
     t.string   "text"
     t.integer  "numAnswers"
     t.string   "expansion"
