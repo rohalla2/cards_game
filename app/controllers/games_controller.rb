@@ -90,7 +90,7 @@ class GamesController < ApplicationController
 
     
     @game.players.each do |player| 
-      cards = @game.cards.limit(10).where("cardType = 'A'").order("RANDOM()")
+      cards = @game.cards.limit(10).where("cardtype = 'A'").order("RANDOM()")
       cards.each do |card|
         assign = CardsPlayer.new  
         assign.game_id = @game.id

@@ -6,7 +6,7 @@
     
 
 
-<% if @card.cardType == "A" %>
+<% if @card.cardtype == "A" %>
 	<div class="card white"> <!-- make it a white card -->
 <% else %>
 	<div class="card black"> <!-- make it a black card -->
@@ -16,7 +16,7 @@
 
  <h3><%= @card.text %></h3>
 
-<% if @card.cardType == "Q" %>
+<% if @card.cardtype == "Q" %>
 <p>
   <strong>Num answers:</strong>
   <%= @card.numAnswers %>
